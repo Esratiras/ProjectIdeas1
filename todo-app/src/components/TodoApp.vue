@@ -46,7 +46,6 @@ export default {
   data(){
     return{
       inputValue:'',
-      textDecoration:'line-through',
       todoList:[
         {
           id: 1,
@@ -77,8 +76,6 @@ export default {
 
       this.todoList.push(to)
       this.inputValue = ''
-      window.localStorage.setItem('user', JSON.stringify(to));
-      window.localStorage.getItem('user');
 
     },
 
