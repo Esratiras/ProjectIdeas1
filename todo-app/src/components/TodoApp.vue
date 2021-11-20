@@ -8,7 +8,7 @@
           <div class="row">
             <div class="input-field col s12">
               <input type="text" placeholder="Write needs to be done" v-model="inputValue">
-              <a class="btn-floating btn-large waves-effect waves-light" style="background-color:#2c3e50 " @click="todoAdd"><i class="material-icons">+</i></a>
+              <a class="btn-floating btn-large waves-effect waves-light" style="background-color:#2c3e50 " @click="todoAdd()"><i class="material-icons">+</i></a>
             </div>
           </div>
         </form>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+//import axios from "services/http";
+import axios from 'axios'
 
 export default {
   //1-Yazılan todolar cache de tutulacak
@@ -46,17 +48,11 @@ export default {
   data(){
     return{
       inputValue:'',
-      todoList:[
-        {
-          id: 1,
-          title: "Learn Vue.js",
-          completed: false
-        },
-        {
-          id: 2,
-          title: "Build a project with vue.js",
-          completed: false
-        }
+      response:'',
+      todoList:[{
+        title:"Task1",
+        completed: true
+      }
       ]
     }
   },
@@ -67,16 +63,13 @@ export default {
       if(this.inputValue.trim() === ''){
         return
       }
-
-      let to={
-        id: Math.random(),
-        title: this.inputValue,
-        components: false,
-      }
-
-      this.todoList.push(to)
-      this.inputValue = ''
-
+        axios.post('http://localhost:3001/todos', {title:this.inputValue}).then((response)=>{
+          this.inputValue = response.data.title
+          this.todoList.push({title:this.inputValue,completed: true})
+        }).catch((err)=>{
+           console.log('err',err)
+        })
+        this.inputValue = ''
     },
 
     removeTask(event){
