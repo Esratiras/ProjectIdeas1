@@ -37,11 +37,10 @@
 </template>
 
 <script>
-//import axios from "services/http";
-import axios from 'axios'
+//import axios from 'axios'
 
 export default {
-  //1-Yazılan todolar cache de tutulacak
+
   name: 'App',
   components: {
   },
@@ -49,9 +48,10 @@ export default {
     return{
       inputValue:'',
       response:'',
-      todoList:[{
-        title:"Task1",
-        completed: true
+      todoList:[   {
+        id:Math.random(),
+        title:"A simple ToDo App with Vue 2",
+        completed:true
       }
       ]
     }
@@ -63,12 +63,16 @@ export default {
       if(this.inputValue.trim() === ''){
         return
       }
-        axios.post('http://localhost:3001/todos', {title:this.inputValue}).then((response)=>{
+        /*axios.post('http://localhost:3001/todos', {title:this.inputValue}).then((response)=>{
           this.inputValue = response.data.title
-          this.todoList.push({title:this.inputValue,completed: true})
+          this.todoList.push(this.inputValue)
         }).catch((err)=>{
            console.log('err',err)
-        })
+        })*/
+      this.todoList.push({
+        title:this.inputValue,
+        id:Math.random()
+      })
         this.inputValue = ''
     },
 

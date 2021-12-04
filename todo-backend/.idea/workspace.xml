@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73486634-1557-4ee5-b3bc-9cdc9e227ae2" name="Changes" comment="first">
-      <change afterPath="$PROJECT_DIR$/routes/todo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Todo.js" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Todo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/Todo.js" beforeDir="false" />
-    </list>
+    <list default="true" id="73486634-1557-4ee5-b3bc-9cdc9e227ae2" name="Changes" comment="düzenleme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,7 +98,7 @@
       <workItem from="1637225196723" duration="812000" />
       <workItem from="1637307331765" duration="2351000" />
       <workItem from="1637395595743" duration="5000" />
-      <workItem from="1637395622288" duration="4039000" />
+      <workItem from="1637395622288" duration="4763000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1636572946571</created>
@@ -120,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1637067452767</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="model">
+      <created>1637431801076</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1637431801076</updated>
+    </task>
+    <task id="LOCAL-00004" summary="düzenleme">
+      <created>1637431839619</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1637431839619</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +149,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="first" />
-    <option name="LAST_COMMIT_MESSAGE" value="first" />
+    <MESSAGE value="model" />
+    <MESSAGE value="düzenleme" />
+    <option name="LAST_COMMIT_MESSAGE" value="düzenleme" />
   </component>
 </project>
