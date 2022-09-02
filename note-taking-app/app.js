@@ -1,19 +1,19 @@
-const express = require('express')
-const app = express()
-const bodyParser=require("body-parser")
+require('dotenv').config();
+require("./src/config/dbConnect")
 
-const admin = require("./router/admin")
+const express = require('express')
+const bodyParser = require("body-parser")
+
+const admin = require("./src/router/admin")
+
+const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use("/admin",admin)
-// app.get("/", (req, res, next) => {
-//     res.send("velakm tu server")
-// })
+app.use("/admin", admin)
 
 
-
-app.listen(3000, () => {
-    console.log("server running http://localhost:3000")
+app.listen(process.env.PORT, () => {
+    console.log(`http://localhost:${process.env.PORT} server running `)
 })
