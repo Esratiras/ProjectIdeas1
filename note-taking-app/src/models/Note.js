@@ -10,7 +10,6 @@ const NoteSchema = new Schema({
     title: {
         type: String,
         require: [true, 'Başlık alanı boş olamaz.'],
-        maxLength: 280
     },
 }, { collection: 'notes', timestamps: true });
 
