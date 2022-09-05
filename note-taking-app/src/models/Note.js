@@ -11,6 +11,10 @@ const NoteSchema = new Schema({
         type: String,
         require: [true, 'Başlık alanı boş olamaz.'],
     },
+    author_id:{
+        type: String,
+        require: [true, 'id alanı boş olamaz.'],
+    }
 }, { collection: 'notes', timestamps: true });
 
 const Note = mongoose.model('Note', NoteSchema)
