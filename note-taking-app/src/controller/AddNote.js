@@ -1,35 +1,27 @@
-const Joi = require("joi")
+const Joi = require("Joi")
 const Note = require("../models/Note")
 
-module.exports = async (req, res, next) => {
+module.exports =async (req, res, next) => {
     try {
         const schema = Joi.object({
-            text: Joi.string().required().max(140),
-            title: Joi.string().required().max(140),
-            author_id: Joi.required(),
+            text: Joi.string().required(),
+            title: Joi.string().required().max(30),
+            author_id: Joi.string().required()
         })
-
-        const validation = schema.validate(req.body)
+        const validation = await schema.validateAsync(req.body)
         
-        console.log(validation)
-        if (!validation) {
-            return res.status(400).json({
-                err: validation
-            })
-        }
-
         const newNote = new Note({
             text:req.body.text,
             title:req.body.title,
-            author_id:req.body.author_id,
+            author_id:req.body.author_id
         })
 
         await newNote.save()
-        return res.status(200).json({
-            success:true
-        })
+
+        res.json({ message: "success" })
         
     } catch (error) {
-        next(error)
+        res.json(error.message)
     }
+
 }

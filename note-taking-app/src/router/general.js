@@ -6,7 +6,6 @@ const login = require("../controller/login")
 
 router.get("/all-notes", getNotes)
 router.get("/add-note", addNote)
-
 router.get("/register", register)
 router.get("/login", login)
 
