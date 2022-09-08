@@ -5,7 +5,6 @@ const UserSchema = new Schema({
     name: {
         type: String,
         require: [true, 'İsim alanı boş olamaz.'],
-        maxLength: 140
     },
     surname: {
         type: String,

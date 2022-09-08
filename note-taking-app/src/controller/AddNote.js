@@ -14,7 +14,7 @@ module.exports =async (req, res, next) => {
             text:req.body.text,
             title:req.body.title,
             author_id:req.body.author_id
-        })
+        }) 
 
         await newNote.save()
 
