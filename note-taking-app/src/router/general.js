@@ -1,12 +1,9 @@
-const router = require('express').Router();
-const getNotes = require("../controller/GetNotes")
-const addNote = require("../controller/AddNote")
-const register = require("../controller/register")
-const login = require("../controller/login")
+const router = require("express").Router()
+const login =require("../controller/Login")
+const getNotes =require("../controller/GetNotes")
 
-router.get("/all-notes", getNotes)
-router.get("/add-note", addNote)
-router.get("/register", register)
-router.get("/login", login)
+router.get("/login",login)
+router.get("/all-notes",getNotes)
+
 
 module.exports = router

@@ -1,22 +1,24 @@
-const Joi = require("joi")
-const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 const User = require("../models/User")
+const LocalStorage = require('node-localstorage').LocalStorage
 
 module.exports = async (req, res, next) => {
-    // try {
-    const schema = Joi.object({
-        username: Joi.string().trim().min(4).max(20).required(),
-        password: Joi.string().trim().min(6).max(18).required(),
-    })
-    const validation = schema.validateAsync(req.body)
+    try {
+        // const { username } = req.body
+        const username = "maraslibaesla46"
+        const getUser = await User.findOne({ username: username })
+        const { id } = getUser
+        if (!getUser) {
+            return res.send("Kullanıcı bulunamadı")
+        }
 
-    const getUser = await User.find({ username: req.body.username })
+        localStorage = new LocalStorage('./scratch');
 
-    const hashPassword = await bcrypt.compare(req.body.password, getUser.password)
-    console.log(hashPassword)
-    // şifrede hata var
-    res.json({ hashPassword })
-    // } catch (error) {
-    //     res.json({ error })
-    // }
+        const token = jwt.sign({ id }, process.env.JWT_KEY, { expiresIn: '2h' })
+        localStorage.setItem("jwt", token)
+
+        res.send(token)
+    } catch (error) {
+        next(error)
+    }
 }
