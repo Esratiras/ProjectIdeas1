@@ -1,9 +1,10 @@
 const router = require("express").Router()
-const login = require("../controller/Login")
+const Auth = require("../controller/Auth")
 const getNotes = require("../controller/GetNotes")
 
-router.get("/login", login)
-router.get("/all-notes", getNotes)
+router.get("/login", Auth.login)
+router.get("/register", Auth.register)
+router.get("/all-note", getNotes)
 
 
 module.exports = router
