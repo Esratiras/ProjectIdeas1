@@ -1,6 +1,8 @@
 const Joi = require("joi")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
+const createError = require('http-errors')
+
 const User = require("../models/User")
 
 const login = async (req, res, next) => {
@@ -13,11 +15,11 @@ const login = async (req, res, next) => {
         schema.validateAsync(req.body);
 
         const { username, password } = req.body
-
-        const getUser = await User.findOne({ username: "rahime" })
+        
+        const getUser = await User.findOne({ username: username })
 
         if (!getUser) {
-            throw new Error("Kullanıcı bulunmadı")
+            return next(createError(404, 'Kullanıcı bulunmadı'))
         }
 
         const passControl = await bcrypt.compare(password, getUser.password)
@@ -26,13 +28,10 @@ const login = async (req, res, next) => {
             throw new Error("Şifre hatalı")
         }
 
-        var token = jwt.sign({ user_id: username }, process.env.JWT_KEY, { algorithm: 'RS256' });
+        const token = jwt.sign({ id: getUser.id }, process.env.JWT_KEY, { expiresIn: 60 * 24 * 1000 /*dk*/ }, { algorithm: 'RS256' });
+        res.cookie('token', token, { httpOnly: true, maxAge: 60 * 60 * 24 * 1000 });
 
-        const token = jwt.sign(payLoad, process.env.JWT_KEY, { expiresIn: 120/*dk*/ });
         res.redirect("/all-note")
-        res.json({
-            token
-        })
 
     } catch (error) {
         return next(error)
@@ -41,6 +40,7 @@ const login = async (req, res, next) => {
 
 const register = async (req, res, next) => {
     try {
+
         const schema = Joi.object({
             name: Joi.string().trim().min(4).max(30).required(),
             username: Joi.string().trim().min(4).max(12).required(),
@@ -55,13 +55,13 @@ const register = async (req, res, next) => {
         const emailControl = await User.findOne({ email: email })
 
         if (emailControl) {
-            throw new Error("E-mail kullanımda")
+            return next(createError(404, 'E-mail kullanımda'))
         }
 
         const usernameControl = await User.findOne({ username: username })
 
         if (usernameControl) {
-            throw new Error("Username kullanımda")
+            return next(createError(404, 'Kullanıcı adı  kullanımda'))
         }
 
 

@@ -20,6 +20,17 @@ const UserSchema = new Schema({
     }
 }, { collection: 'user', timestamps: true });
 
+UserSchema.methods.JoiValidation = function (userObject) {
+    const schema = Joi.object({
+        name: Joi.string().trim().min(4).max(30).required(),
+        username: Joi.string().trim().min(4).max(12).required(),
+        email: Joi.string().email().required(),
+        password: Joi.string().trim().min(6).max(12).required(),
+    })
+
+    return schema.validateAsync(userObject)
+}
+
 const User = mongoose.model('User', UserSchema)
 
 module.exports = User;

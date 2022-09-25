@@ -2,12 +2,12 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema;
 
 const NoteSchema = new Schema({
-    text: {
+    title: {
         type: String,
         require: [true, 'İçerik alanı boş olamaz.'],
         maxLength: 140
     },
-    title: {
+    detail: {
         type: String,
         require: [true, 'Başlık alanı boş olamaz.'],
     },
